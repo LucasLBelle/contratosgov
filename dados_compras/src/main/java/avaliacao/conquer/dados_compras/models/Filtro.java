@@ -4,22 +4,29 @@ public class Filtro {
 
 	private String filtro;
 	private String uasg;
-	private String status;
-	private String msg;
+	private String type;
+	private String message;
+	
+	public Filtro() {
+		this.filtro = "";
+		this.uasg = "";
+		this.type = "";
+		this.message = "";
+	}
 
 	public Filtro(String tp) {
 		this.filtro = tp;
 		this.uasg = "";
-		this.status = "";
-		this.msg = "";
+		this.type = "";
+		this.message = "";
 	}	
 	
 	public Filtro(String filtro, String uasg, String status, String msg) {
 		super();
 		this.filtro = filtro;
 		this.uasg = uasg;
-		this.status = status;
-		this.msg = msg;
+		this.type = status;
+		this.message = msg;
 	}
 
 	public String getFiltro() {
@@ -38,20 +45,20 @@ public class Filtro {
 		this.uasg = uasg;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getType() {
+		return type;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setType(String status) {
+		this.type = status;
 	}
 
-	public String getMsg() {
-		return msg;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setMessage(String msg) {
+		this.message = msg;
 	}
 	
 }

@@ -13,12 +13,11 @@
  <body>
  	<div class="container">
  		<div class="jumbotron" align="center" style="margin-top: 50px;">
-			<h1>Busca dados de contratos do Governo Brasileiro</h1>
+			<h1><b>Busca dados de contratos do Governo Brasileiro</b></h1>
 			<h4>Escolha como deseja agrupar os dados e preencha o código UASG:</h4>
 			<hr>
-			<div th:if="${status} = 'Falhou'" th:text="${message}" th:class="${'alert ' + alertClass}"/>
-			<div th:if="${status} = 'Sucesso'" th:text="${message}" th:class="${'alert ' + alertClass}"/>
-			<form action="buscadados" method="post" th:object="${filtro}" class="mt-5">
+			<form action="buscadados" method="post" th:object="${filtro}" class="mt-5">	
+			    <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
         		<div class="form-group">
 	            		<div class="custom-control custom-radio custom-control-inline">
 	                		<input type="radio" id="cnpj_contratada" name="cnpj_contratada" class="custom-control-input" value="cnpj_contratada" th:field="*{filtro}" th:checked="${filtro} ? 'checked'"/>

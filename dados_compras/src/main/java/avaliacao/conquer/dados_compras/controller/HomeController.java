@@ -2,8 +2,11 @@ package avaliacao.conquer.dados_compras.controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import avaliacao.conquer.dados_compras.models.Contrato;
 import avaliacao.conquer.dados_compras.models.Filtro;
@@ -25,35 +29,37 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String index(Model model) {
-		//Filtro filtro = new Filtro("cnpj_contratada");
-		Filtro filtro = new Filtro("cnpj_contratada", "", "Falhou", "Favor selecionar um filtro e digitar código UASG!");
+		Filtro filtro = new Filtro("cnpj_contratada");
 		model.addAttribute("filtro", filtro);
 		return "index";
 	}
 	
 	@RequestMapping(value = "buscadados", method = RequestMethod.POST)
-	//@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public String buscaDados(HttpServletRequest request, HttpServletResponse response, @RequestParam("filtro") String filtro, @RequestParam("uasg") String uasg, Model model) throws IOException {
-		Filtro retFiltro = null;
-
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	public String buscaDados(HttpServletRequest request, HttpServletResponse response, @RequestParam("filtro") String filtro, @RequestParam("uasg") String uasg, RedirectAttributes redirect, Model model) throws IOException, ServletException {
+		
+		response.setContentType("text/csv;charset=UTF-8");
+		
 		if(null == filtro || null == uasg || "".equals(filtro) || "".equals(uasg)) {
-			retFiltro = new Filtro(filtro, uasg, "Falhou", "Favor selecionar um filtro e digitar código UASG!");
-			model.addAttribute("filtro", retFiltro);
-			return "index";
-		}
+			redirect.addFlashAttribute("message", "Verifique os parâmetros de entrada e tente novamente por favor!");
+			redirect.addFlashAttribute("alertClass", "alert-danger");
+			return "redirect:/";
+		} 
+		try {	
+			model.addAttribute("filtro", new Filtro(filtro));
+			model.addAttribute("message", "Arquivo baixado com sucesso!");
+			model.addAttribute("alertClass", "alert-success");
 
-		try {
-			response.setContentType("text/csv;charset=UTF-8");
 			response.addHeader("Content-Disposition", "attachment; filename = Contratos_" + uasg  + "AgrupadoPor_" + filtro + ".csv");
-			//response.getWriter().write(service.buscarDadosGov(filtro, uasg));
-
-			retFiltro = new Filtro(filtro, uasg, "Sucesso", "Arquivo baixado com sucesso!");
-			model.addAttribute("filtro", retFiltro);
+			response.setStatus(200);
+			response.getWriter().write(service.buscarDadosGov(filtro, uasg));
+			
+			return "index";
 		} catch(Exception e) {
-			retFiltro = new Filtro(filtro, uasg, "Falhou", "Ocorreu um erro no serviço API GOV. Tente novamente mais tarde!");
-			model.addAttribute("filtro", retFiltro);
+			redirect.addFlashAttribute("message", "API Gov indisponível no momento. Favor tente novamente mais tarde!");
+			redirect.addFlashAttribute("alertClass", "alert-danger");
+			return "redirect:/";
 		}
-		return "index";
 	}
 	
 	@RequestMapping(value = "adicionacontrato", method = RequestMethod.POST)
