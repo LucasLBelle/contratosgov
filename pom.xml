@@ -75,24 +75,23 @@
 		</dependency>
 	</dependencies>
 	<build>
+	<sourceDirectory>src/main/java</sourceDirectory>
 	<finalName>DadosComprasApplication</finalName>
+	<resources>
+            <resource>
+                <directory>${basedir}/src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
     	<plugins>
-        	<plugin>
-	        	<groupId>org.springframework.boot</groupId>
-	            	<artifactId>spring-boot-maven-plugin</artifactId>
-		    	<configuration>
-				<archive>
-			    		<manifest>
-                				<mainClass>avaliacao.conquer.dados_compras.DadosComprasApplication</mainClass>
-					</manifest>
-				</archive>
-             	    	</configuration>
-	            	<version>2.2.7.RELEASE</version><!--$NO-MVN-MAN-VER$-->
-        	</plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-jar-plugin</artifactId>
 			<configuration>
+				<outputDirectory>lib</outputDirectory>
 				<archive>
 			    		<manifest>
 			      			<addClasspath>true</addClasspath>
