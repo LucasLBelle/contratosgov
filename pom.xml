@@ -12,7 +12,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>dados_compras</name>
 	<description>Interface de busca e visualização de dados de compras licitadas pelo governo brasileiro.</description>
-
+	<start-class>avaliacao.conquer.dados_compras.DadosComprasApplication</start-class>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
