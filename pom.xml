@@ -78,30 +78,27 @@
 	<finalName>DadosComprasApplication</finalName>
     	<plugins>
         	<plugin>
-	            <groupId>org.springframework.boot</groupId>
-	            <artifactId>spring-boot-maven-plugin</artifactId>
-		    <configuration>    
-                	<mainClass>avaliacao.conquer.dados_compras.DadosComprasApplication</mainClass>
-             	    </configuration>
-	            <version>2.2.7.RELEASE</version><!--$NO-MVN-MAN-VER$-->
-	            <executions>
-                	<execution>
-                    	<goals>
-                        	<goal>repackage</goal>
-                    	</goals>
-                	</execution>
-            	</executions>
+	        	<groupId>org.springframework.boot</groupId>
+	            	<artifactId>spring-boot-maven-plugin</artifactId>
+		    	<configuration>
+				<archive>
+			    		<manifest>
+                				<mainClass>avaliacao.conquer.dados_compras.DadosComprasApplication</mainClass>
+					</manifest>
+				</archive>
+             	    	</configuration>
+	            	<version>2.2.7.RELEASE</version><!--$NO-MVN-MAN-VER$-->
         	</plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-jar-plugin</artifactId>
 			<configuration>
-			  <archive>
-			    <manifest>
-			      <addClasspath>true</addClasspath>
-			      <mainClass>avaliacao.conquer.dados_compras.DadosComprasApplication</mainClass>
-			    </manifest>
-			  </archive>
+				<archive>
+			    		<manifest>
+			      			<addClasspath>true</addClasspath>
+			      			<mainClass>avaliacao.conquer.dados_compras.DadosComprasApplication</mainClass>
+			    		</manifest>
+				</archive>
 			</configuration>
 		</plugin>
     	</plugins>
