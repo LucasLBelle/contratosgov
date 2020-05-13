@@ -76,6 +76,10 @@
 	</dependencies>
 	<build>
 	<sourceDirectory>src/main/java</sourceDirectory>
+	<directory>target</directory>
+    	<outputDirectory>target/classes</outputDirectory>
+    	<finalName>${project.artifactId}-${project.version}</finalName>
+	<scriptSourceDirectory>src</scriptSourceDirectory>
 	<finalName>DadosComprasApplication</finalName>
 	<resources>
             <resource>
@@ -87,6 +91,18 @@
             </resource>
         </resources>
     	<plugins>
+		<plugin>
+	        	<groupId>org.springframework.boot</groupId>
+	            	<artifactId>spring-boot-maven-plugin</artifactId>
+		    	<configuration>
+				<archive>
+			    		<manifest>
+                				<mainClass>avaliacao.conquer.dados_compras.DadosComprasApplication</mainClass>
+					</manifest>
+				</archive>
+             	    	</configuration>
+	            	<version>2.2.7.RELEASE</version><!--$NO-MVN-MAN-VER$-->
+        	</plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-jar-plugin</artifactId>
