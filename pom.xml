@@ -80,7 +80,7 @@
 	            <groupId>org.springframework.boot</groupId>
 	            <artifactId>spring-boot-maven-plugin</artifactId>
 		    <configuration>    
-                	<mainClass>avaliacao.conquer.dados_compras.DadosComprasApplication</mainClass>
+                	<mainClass>avaliacao.conquer.dados_compras.DadosComprasApplication.class</mainClass>
              	    </configuration>
 	            <version>2.2.7.RELEASE</version><!--$NO-MVN-MAN-VER$-->
 	            <executions>
