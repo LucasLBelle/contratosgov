@@ -75,6 +75,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+	<finalName>DadosComprasApplication</finalName>
     	<plugins>
         	<plugin>
 	            <groupId>org.springframework.boot</groupId>
