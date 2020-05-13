@@ -80,7 +80,6 @@
     	<outputDirectory>target/classes</outputDirectory>
     	<finalName>${project.artifactId}-${project.version}</finalName>
 	<scriptSourceDirectory>src</scriptSourceDirectory>
-	<finalName>DadosComprasApplication</finalName>
 	<resources>
             <resource>
                 <directory>${basedir}/src/main/java</directory>
